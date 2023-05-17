@@ -5,15 +5,17 @@ class Kartya {
     #divELEM;
     #imgELEM;
 
-    constructor(fajlNev, allapot, szuloELEM) {
-        this.#fajlNev = fajlNev;
-        this.#allapot = allapot;
-        this.#blokkolt;
+    constructor(fajlNev, szuloELEM) {
+        this.#fajlNev = fajlNev;        
+        //this.#blokkolt;
         szuloELEM.append(`<div class="kartya"> <img src="Stilus/kepek/${this.#fajlNev}" alt=""></div>`);
 
-        this.#divELEM = szuloELEM;
-        this.#imgELEM;
-
+        this.#divELEM = szuloELEM.children("div:last-child");
+        this.#imgELEM = this.#divELEM.children("img");
+        
+        this.#allapot = false;
+        //Kezdetben a hátlap látszik, true esetén a kép
+        this.#setLap(); 
 
     }
 
@@ -21,10 +23,16 @@ class Kartya {
         
     }
     getFajlnev() { 
+        return this.#fajlNev;
 
     }
 
     #setLap() { 
+        if (this.#allapot) {
+            this.#imgELEM.attr("src", this.#fajlNev);
+        }else{
+            this.#imgELEM.attr("scr", "Stilus/kepek/hatter.jpg")
+        }
 
     }
 

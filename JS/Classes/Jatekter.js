@@ -9,14 +9,28 @@ class Jatekter {
         const szuloELEM = $(".szuloELEM");
 
         for (let index = 0; index < this.#kartyaLista.length; index++) {
-            new Kartya(this.#kartyaLista[index].kep, false, szuloELEM);
+            new Kartya(this.#kartyaLista[index].kep, szuloELEM);
         }
     }
 
-    #init() { }
-    #kever() { }
-    #ellenorzes() { }
-    #TriggerBlocked() { }
-    #TriggerUnBlocked() { }
+    #init() {         
+        /**új játékteret hoz létre, alapértékre állítja az adattagokat
+         * Így tudunk új játékot kezdeni, létrehozza a játékteret
+         */
+    }
+    #kever() { 
+        /**véletlen sorrendbe állítja a kartyaLista elemeit */
+    }
+    #ellenorzes() { 
+        /**megnézi hogy a két kiválasztott kártya egyforma-e?
+         * ha igen akkor nem fordítja vissza, ha nem akkor 1000sec után visszafordítja
+         */
+    }
+    #TriggerBlocked() {
+        /**feladata hogy kártyák kattintását blokkolja */
+     }
+    #TriggerUnBlocked() { 
+
+    }
 }
 export default Jatekter;
