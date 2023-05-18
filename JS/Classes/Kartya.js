@@ -5,7 +5,7 @@ class Kartya {
     #divELEM;
     #imgELEM;
 
-    constructor(fajlNev, szuloELEM) {
+    constructor(fajlNev,allapot, szuloELEM) {
         this.#fajlNev = fajlNev;
         //this.#blokkolt;
         szuloELEM.append(`<div class="kartya"> <img src="Stilus/kepek/hatter.jpg" alt=""></div>`);
@@ -13,34 +13,40 @@ class Kartya {
         this.#divELEM = szuloELEM.children("div:last-child");
         this.#imgELEM = this.#divELEM.children("img");
 
-        this.#allapot = true;
+        this.#allapot = false;
         //Kezdetben a hátlap látszik, true esetén a kép
-        this.#setAllapot();
+        //this.#setLap();      
 
         //Ne hagyd ki!!!
         this.#imgELEM.on("click", ()=>{
             this.#kattintasTrigger();            
-            this.#setLap();
+            this.setAllapot();
         })
         
 
     }
 
-    #setAllapot() {        
-        this.#setLap;
+    setAllapot() {  
+        //console.log("A setAllapotban vagyok");
+        //console.log(this.#allapot);
+        this.#allapot = !this.#allapot;      
+        //console.log(this.#allapot);
+        this.#setLap();
     }
 
     getFajlnev() {
         return this.#fajlNev;
-
     }
 
     #setLap() {
+        //console.log(this.#allapot);
         if (this.#allapot) {
             //attribútum beállítása
             this.#imgELEM.attr("src", "Stilus/kepek/" + this.#fajlNev);
         } else {
-            this.#imgELEM.attr("scr", "Stilus/kepek/hatter.jpg")
+            //console.log("bement a hamis ágba");
+            //console.log(this.#allapot);
+            this.#imgELEM.attr("src", "Stilus/kepek/hatter.jpg")
         }
 
     }

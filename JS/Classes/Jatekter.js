@@ -8,18 +8,20 @@ class Jatekter {
         this.#kartyaLista = kartyaLista;
         const szuloELEM = $(".szuloELEM");
 
-        this.#kever();
+        //this.#kever();
         for (let index = 0; index < this.#kartyaLista.length; index++) {
-            new Kartya(this.#kartyaLista[index].kep, szuloELEM);
+            new Kartya(this.#kartyaLista[index].kep, false, szuloELEM);
         }
-       
-        $(window).on("fordit", (event) => {
-            console.log("A kattintást érzékeli")
-            console.log(event.detail);
-            let aktElem = event.detail;
-            
 
+        $(window).on("fordit", (event) => {
+            //console.log("A kattintást érzékeli")
+            console.log(event.detail);
+            this.#kivalasztottKartyaLista.push(event.detail);
+            if (this.#kivalasztottKartyaLista.length === 2) {
+                this.#ellenorzes();
+            }
         });
+
     }
 
     #init() {
@@ -37,15 +39,28 @@ class Jatekter {
             index++;
         }
     }
-    #ellenorzes() {
-        /**megnézi hogy a két kiválasztott kártya egyforma-e?
-         * ha igen akkor nem fordítja vissza, ha nem akkor 1000sec után visszafordítja
-         */
+    #ellenorzes() {        
+        console.log(this.#kivalasztottKartyaLista);
+        let elsoKartya = this.#kivalasztottKartyaLista[0];
+        let masodikKartya = this.#kivalasztottKartyaLista[1];
+
+        if (elsoKartya.getFajlnev() === masodikKartya.getFajlnev()) {
+            console.log("A két kép egyforma");
+        } else {
+            console.log("A két kép nem egyforma");
+            setTimeout(function () {
+                console.log("Nézzük az időt");
+                elsoKartya.setAllapot();
+                masodikKartya.setAllapot();
+            }, 1000)
+        }
+
+
     }
     #TriggerBlocked() {
         /**feladata hogy kártyák kattintását blokkolja */
     }
-    #TriggerUnBlocked() { 
+    #TriggerUnBlocked() {
 
     }
 }
