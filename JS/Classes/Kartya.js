@@ -13,25 +13,23 @@ class Kartya {
         this.#divELEM = szuloELEM.children("div:last-child");
         this.#imgELEM = this.#divELEM.children("img");
 
-        this.#allapot;
+        this.#allapot = true;
         //Kezdetben a hátlap látszik, true esetén a kép
         this.#setAllapot();
-        
+
         //Ne hagyd ki!!!
         this.#imgELEM.on("click", ()=>{
-            this.#kattintasTrigger();
-            this.#setAllapot();
+            this.#kattintasTrigger();            
+            this.#setLap();
         })
         
 
     }
 
-    #setAllapot() {
-        this.#allapot = !this.#allapot;
+    #setAllapot() {        
         this.#setLap;
-
-
     }
+
     getFajlnev() {
         return this.#fajlNev;
 

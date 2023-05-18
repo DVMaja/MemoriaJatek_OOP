@@ -16,6 +16,8 @@ class Jatekter {
         $(window).on("fordit", (event) => {
             console.log("A kattintást érzékeli")
             console.log(event.detail);
+            let aktElem = event.detail;
+            
 
         });
     }
