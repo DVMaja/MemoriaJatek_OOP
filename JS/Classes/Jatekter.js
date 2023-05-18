@@ -9,14 +9,14 @@ class Jatekter {
         const szuloELEM = $(".szuloELEM");
 
         this.#kever();
-
         for (let index = 0; index < this.#kartyaLista.length; index++) {
             new Kartya(this.#kartyaLista[index].kep, szuloELEM);
         }
-
+       
         $(window).on("fordit", (event) => {
             console.log("A kattintást érzékeli")
             console.log(event.detail);
+
         });
     }
 
