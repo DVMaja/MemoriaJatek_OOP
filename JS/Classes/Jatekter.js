@@ -5,30 +5,44 @@ class Jatekter {
     #kivalasztottKartyaLista = [];
 
     constructor(kartyaLista) {
-        this.#kartyaLista = kartyaLista;        
+        this.#kartyaLista = kartyaLista;
         const szuloELEM = $(".szuloELEM");
+
+        this.#kever();
 
         for (let index = 0; index < this.#kartyaLista.length; index++) {
             new Kartya(this.#kartyaLista[index].kep, szuloELEM);
         }
+
+        $(window).on("fordit", (event) => {
+            console.log("A kattintást érzékeli")
+            console.log(event.detail);
+        });
     }
 
-    #init() {         
+    #init() {
         /**új játékteret hoz létre, alapértékre állítja az adattagokat
          * Így tudunk új játékot kezdeni, létrehozza a játékteret
          */
     }
-    #kever() { 
-        /**véletlen sorrendbe állítja a kartyaLista elemeit */
+    #kever() {
+        let index = 0;
+        while (index < this.#kartyaLista.length - 1) {
+            let velSzam = Math.floor(Math.random() * this.#kartyaLista.length);
+            let kepTarto = this.#kartyaLista[velSzam];
+            this.#kartyaLista[velSzam] = this.#kartyaLista[index];
+            this.#kartyaLista[index] = kepTarto;
+            index++;
+        }
     }
-    #ellenorzes() { 
+    #ellenorzes() {
         /**megnézi hogy a két kiválasztott kártya egyforma-e?
          * ha igen akkor nem fordítja vissza, ha nem akkor 1000sec után visszafordítja
          */
     }
     #TriggerBlocked() {
         /**feladata hogy kártyák kattintását blokkolja */
-     }
+    }
     #TriggerUnBlocked() { 
 
     }
